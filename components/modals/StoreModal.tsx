@@ -10,38 +10,37 @@ import { Button } from "@/components/ui/button"
 import axios from "axios"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import toast from 'react-hot-toast'
 
 const formSchema = z.object({
     name: z.string().min(1)
 })
 
 export const StoreModal = () => {
-    const storeModal = UseStoreModal()
-    const [loading, SetLoading] = useState(false)
+  const storeModal = UseStoreModal()
+  const [loading, SetLoading] = useState(false)
 
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues:{
-          name:""
-        }
-    })
-
-    const onSubmit = async (values:z.infer<typeof formSchema>) => {
-   
-        // try {
-        //   SetLoading(true)
-        //   const response = await axios.post('/api/store/', values)
-          
-        //   window.location.assign(`/${response.data.id}`)
-          
-        // } catch (error) {
-        //   toast.error("Something Went Wrong")
-        // } finally{
-        //   SetLoading(false)
-        // }
-        console.log(values)
-        
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues:{
+      name:""
     }
+  })
+
+  const onSubmit = async (values:z.infer<typeof formSchema>) => {
+      try {
+        SetLoading(true)
+        const response = await axios.post('/api/stores/', values)
+       window.location.assign(`/${response.data.id}`)
+       toast.success("Store Created")
+          
+      } catch (error) {
+        toast.error("Something Went Wrong")
+      } finally{
+        SetLoading(false)
+      }
+      console.log(values)   
+  }
 
   return (
    <Modal title="Create  A Store" description="Add a New Store to Manage Produts and Categories" 
