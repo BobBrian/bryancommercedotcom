@@ -24,6 +24,7 @@ const NavigationBar = async () => {
             <StoreSwitcher items={stores}/>
             <NavigationRoutes  className="mx-6"/>
             <div className="ml-auto flex items-center space-x-4">
+                <UserButton afterSignOutUrl='/'/>
 
             </div>
         </div>   

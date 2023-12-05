@@ -44,17 +44,17 @@ function StoreSwitcher({className, items =[]}:StoreSwitcherProps) {
 
   return (
     <Popover open={open} onOpenChange={Setopen}>
-        <PopoverTrigger>
+        <PopoverTrigger asChild>
             <Button variant="outline" 
             size="sm"  role='combobox' 
             aria-expanded={open} aria-label="Select a Store"
             className={cn("w-[200px] justify-between", className)}>
-                <StoreIcon className="mr-2 h-4"/>
+                <StoreIcon className="mr-2 h-4 w-4"/>
                 {currentStore?.label}
                 <ChevronsUpDown className='ml-auto h-4 w-4 shrink-0 opacity-50'/>
             </Button>
         </PopoverTrigger>
-        <PopoverContent>
+        <PopoverContent className="w-[200px] p-0">
             <Command>
                 <CommandList>
                     <CommandInput placeholder='Search Store...'/>
@@ -62,7 +62,7 @@ function StoreSwitcher({className, items =[]}:StoreSwitcherProps) {
                     <CommandGroup heading="Stores">
                         {formattedItems.map((store) =>(
                             <CommandItem key={store.value} onSelect={() => onStoreSelect(store)} className='text-sm'>
-                                <StoreIcon/>
+                                <StoreIcon className="mr-2 h-4 w-4"/>
                                 {store.label}
                                 <Check className={cn(
                                     "ml-auto h-4 w-4",
@@ -72,7 +72,7 @@ function StoreSwitcher({className, items =[]}:StoreSwitcherProps) {
                         ))}
                     </CommandGroup>
                 </CommandList>
-                <CommandSeparator>
+                <CommandSeparator/>
                     <CommandList>
                         <CommandGroup>
                         <CommandItem onSelect={() =>{
@@ -84,7 +84,6 @@ function StoreSwitcher({className, items =[]}:StoreSwitcherProps) {
                         </CommandItem>
                         </CommandGroup>
                     </CommandList>
-                </CommandSeparator>
             </Command>
         </PopoverContent>
     </Popover>
