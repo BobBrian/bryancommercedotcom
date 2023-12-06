@@ -17,6 +17,12 @@ function NavigationRoutes({className, ...props}:React.HTMLAttributes<HTMLElement
 
         },
         {
+            href: `/${params.storeId}/billboards`,
+            label: "Billboards",
+            active: pathname === `/${params.storeId}/billboards`
+
+        },
+        {
             href: `/${params.storeId}/settings`,
             label: "Settings",
             active: pathname === `/${params.storeId}/setting`
