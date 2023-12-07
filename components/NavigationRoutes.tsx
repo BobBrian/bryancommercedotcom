@@ -23,6 +23,12 @@ function NavigationRoutes({className, ...props}:React.HTMLAttributes<HTMLElement
 
         },
         {
+            href: `/${params.storeId}/categories`,
+            label: "Category",
+            active: pathname === `/${params.storeId}/categories`
+
+        },
+        {
             href: `/${params.storeId}/settings`,
             label: "Settings",
             active: pathname === `/${params.storeId}/setting`

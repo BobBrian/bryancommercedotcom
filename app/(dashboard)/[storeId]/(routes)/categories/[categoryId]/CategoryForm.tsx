@@ -14,14 +14,7 @@ import * as z from "zod"
 import toast from 'react-hot-toast'
 import axios from 'axios'
 import { AlertModal } from '@/components/modals/AlertModal'
-import ImageUpload from '@/components/ui/imageupload'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-
-
-interface CategoryFormProps {
-    initialData:Category | null;
-    billboards:Billboard[]
-}
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -29,6 +22,12 @@ const formSchema = z.object({
 })
 
 type CategoryFormValues = z.infer<typeof formSchema>
+
+
+interface CategoryFormProps {
+  initialData:Category | null;
+  billboards:Billboard[]
+}
 
 export const CategoryForm:React.FC<CategoryFormProps> = ({initialData,billboards}) => {
 
@@ -71,9 +70,9 @@ export const CategoryForm:React.FC<CategoryFormProps> = ({initialData,billboards
     }finally{
      Setloading(false)
     }
-   }
+  }
 
-   const onDelete = async () =>{
+  const onDelete = async () =>{
     try {
       Setloading(true)
       await axios.delete(`/api/${params.storeId}/categories/${params.categoryId}`)
@@ -82,7 +81,7 @@ export const CategoryForm:React.FC<CategoryFormProps> = ({initialData,billboards
       toast.success(toastMessage)
       
     } catch (error) {
-      toast.error("Make sure you removed all products and categories first")
+      toast.error("Make sure you removed all products and category first")
     }finally{
       Setloading(false)
       Setopen(false)
@@ -99,10 +98,9 @@ export const CategoryForm:React.FC<CategoryFormProps> = ({initialData,billboards
             </Button>   
         </div>
         <Separator/>
-
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">      
-                <div className="grid grid-cols-3 gap-8">
+              <div className="grid grid-cols-3 gap-8">
                     <FormField control={form.control} name="name"
                         render={({field}) =>(
                     <FormItem>
@@ -111,18 +109,15 @@ export const CategoryForm:React.FC<CategoryFormProps> = ({initialData,billboards
                         <Input disabled={loading} placeholder='Category Name'{...field}/>
                         </FormControl>
                         <FormMessage/>
-                    </FormItem>
-                    )}
-                    />
-                    <FormField control={form.control} name="billboardId"
-                    render={({field}) =>(
+                    </FormItem>)}/>
+                    <FormField control={form.control} name="billboardId"render={({field}) =>(
                     <FormItem>
                             <FormLabel>Billboard</FormLabel>
                             <Select disabled={loading} onValueChange={field.onChange}
                             value={field.value} defaultValue={field.value}>
                             <FormControl>
                                 <SelectTrigger >
-                                <SelectValue defaultValue={field.value} placeholder='Select a Category'/>
+                                <SelectValue defaultValue={field.value} placeholder='Select a Billboard'/>
                                 </SelectTrigger>
                             </FormControl>
                             <SelectContent>
@@ -134,10 +129,8 @@ export const CategoryForm:React.FC<CategoryFormProps> = ({initialData,billboards
                             </SelectContent>
                             </Select>
                             <FormMessage/>
-                    </FormItem>
-                    )}
-                    />
-            </div>
+                    </FormItem>)}/>
+               </div>
                 <Button disabled={loading} className="ml-auto" type='submit'>
                     {action}
                 </Button>

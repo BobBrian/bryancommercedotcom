@@ -14,19 +14,20 @@ interface CategoryClientProps{
 }
 
 export const CategoryClient:React.FC<CategoryClientProps> = ({data}) => {
-    const router = useRouter()
-    const params = useParams()
+  const router = useRouter()
+  const params = useParams()
+
   return (
     <>
         <div className="flex items-center justify-between">
-            <Heading title={`Billboard (0)`} description='Manage the Billboards of Stores'/>
+            <Heading title={`Category (${data.length})`} description='Manage the Categories of Stores'/>
             <Button onClick={() => router.push(`/${params.storeId}/categories/new`)}>
                 <Plus className="mr-2 h-4 w-4"/>
                 Add New
             </Button>
         </div>
         <Separator/>
-        <DataTable searchKey="label" columns={Columns} data={data}/>
+        <DataTable searchKey="name" columns={Columns} data={data}/>
     </>
   )
 }

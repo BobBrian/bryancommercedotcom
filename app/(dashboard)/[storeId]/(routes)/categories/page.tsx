@@ -5,7 +5,7 @@ import prismadb from '@/lib/prismadb'
 import { CategoryColumn} from './Column'
 import {  format } from 'date-fns'
 
-const Categories = async ({params}:{params:{storeId:string}}) => {
+const CategoriesPage = async ({params}:{params:{storeId:string}}) => {
 
   const categories = await prismadb.category.findMany({
     where:{
@@ -37,4 +37,4 @@ const Categories = async ({params}:{params:{storeId:string}}) => {
   )
 }
 
-export default Categories
+export default CategoriesPage
