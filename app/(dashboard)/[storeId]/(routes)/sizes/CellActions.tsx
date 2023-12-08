@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import { useState } from 'react'
-import { BillboardColumn } from './Column'
+import { SizeColumn } from './Column'
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,DropdownMenuSeparator,
      DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
@@ -13,7 +13,7 @@ import axios from 'axios'
 import { AlertModal } from '@/components/modals/AlertModal'
 
 interface CellActionsProps{
-    data: BillboardColumn
+    data: SizeColumn
 }
 
 export const CellActions:React.FC<CellActionsProps> = ({data}) => {
@@ -25,19 +25,19 @@ export const CellActions:React.FC<CellActionsProps> = ({data}) => {
 
     const onCopy = (id:string) =>{
         navigator.clipboard.writeText(id)
-        toast.success("BillBoard ID Copied to the Clipboard")
+        toast.success("Size ID Copied to the Clipboard")
     }
 
     const onDelete = async () =>{
         try {
           Setloading(true)
-          await axios.delete(`/api/${params.storeId}/billboards/${data.id}`)
+          await axios.delete(`/api/${params.storeId}/sizes/${data.id}`)
           router.refresh()
           router.push("/")
-          toast.success("Billboard Deleted")
+          toast.success("Size Deleted")
           
         } catch (error) {
-          toast.error("Make sure you removed all  categories using the billboard first")
+          toast.error("Make sure you removed all  Products using these Sizes first")
         }finally{
           Setloading(false)
           Setopen(false)
@@ -63,7 +63,7 @@ export const CellActions:React.FC<CellActionsProps> = ({data}) => {
                 <Copy className="mr-2 h-4 w-4"/>
                 Copy ID
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/billboards/${data.id}`)}>
+            <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/sizes/${data.id}`)}>
                 <Edit className="mr-2 h-4 w-4"/>
                 Update
             </DropdownMenuItem>

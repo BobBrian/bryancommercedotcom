@@ -29,6 +29,12 @@ function NavigationRoutes({className, ...props}:React.HTMLAttributes<HTMLElement
 
         },
         {
+            href: `/${params.storeId}/sizes`,
+            label: "Size",
+            active: pathname === `/${params.storeId}/sizes`
+
+        },
+        {
             href: `/${params.storeId}/settings`,
             label: "Settings",
             active: pathname === `/${params.storeId}/setting`
