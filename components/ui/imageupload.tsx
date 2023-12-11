@@ -43,7 +43,7 @@ const ImageUpload:React.FC<ImageUploadProps> = ({disabled, onChange,onRemove,val
                     <Image
                     fill
                     className="object-cover"
-                    alt='image'
+                    alt='Image'
                     src={url}
                     />
                 </div>

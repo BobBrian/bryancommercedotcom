@@ -58,7 +58,7 @@ export async function PATCH(req:Request,{params}:{params:{billboardId:string, st
         return new NextResponse("Unauthorized", {status:403})
     }
 
-    const store = await prismadb.billboard.updateMany({
+    const billboard = await prismadb.billboard.updateMany({
         where:{
             id:params.billboardId,
         },
@@ -67,7 +67,7 @@ export async function PATCH(req:Request,{params}:{params:{billboardId:string, st
         }
     })
 
-    return NextResponse.json(store)
+    return NextResponse.json(billboard)
     
   } catch (error) {
     console.log('[BILLBOARD_PATCH', error)

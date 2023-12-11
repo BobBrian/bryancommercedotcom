@@ -91,9 +91,11 @@ export const BillboardForm:React.FC<BillboardFormProps> = ({initialData}) => {
         <AlertModal isOpen={open} onClose={() => Setopen(false)} onConfrm={onDelete} loading={loading}/>
         <div className="flex items-center justify-between">
             <Heading title={title} description={description}/>
+            {initialData && (
             <Button variant="destructive" size="icon" onClick={()=>Setopen(true)}>
                 <Trash className="h-4 w-4"/>
-            </Button>   
+            </Button>  
+            )} 
         </div>
 
         <Separator/>
@@ -129,7 +131,7 @@ export const BillboardForm:React.FC<BillboardFormProps> = ({initialData}) => {
                     />
                 </div>
                 <Button disabled={loading} className="ml-auto" type='submit'>
-                    Save Changes
+                    {action}
                 </Button>
             </form>
         </Form>
