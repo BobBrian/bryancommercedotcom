@@ -3,7 +3,7 @@
 
 import React from 'react'
 import { UseStoreModal } from '@/hooks/UseStoreModal'
-import { useState,useEffect } from 'react'
+import { useState } from 'react'
 import Modal from '../ui/Modal'
 import * as z from "zod"
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -55,7 +55,7 @@ export const StoreModal = () => {
         <div>
             <div className="space-y-4 py-2 pb-4">
                 <Form {...form}>
-                    <form>
+                    <form onSubmit={form.handleSubmit(onSubmit)}>
                         <FormField control={form.control} name="name"  render={({field}) =>(
                             <FormItem>
                                 <FormLabel>Name</FormLabel>
